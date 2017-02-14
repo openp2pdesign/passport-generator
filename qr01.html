@@ -10,6 +10,9 @@
                 font-size: 32px;
                 font-family: "Source Sans Pro", "sans-serif";
             }
+            #d3 {
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -20,8 +23,8 @@
                 sodales ultrices imperdiet. Aenean mollis ipsum placerat venenatis elementum. Mauris luctus dignissim efficitur. Suspendisse non congue diam.
             </p>
         </div>
-        <div id="qrcodeimg" style="border: 1px solid red; display: none;"></div>
-        <div id="d3" style="border: 1px solid blue;">
+        <div id="qrcodeimg" style="display: none;"></div>
+        <div id="d3">
             <svg></svg>
         </div>
         <button onclick="generatePassport()">Click me</button>
@@ -86,6 +89,7 @@
                    .attr("x", "10")
                    .attr("y", "30")
                    .text(title);
+                d3.select("#d3").style("display","inline");
             }
         </script>
     </body>
