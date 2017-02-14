@@ -6,12 +6,18 @@
             svg {
                 border: 5px solid #000;
             }
+            .project-title {
+                font-size: 32px;
+                font-family: "Source Sans Pro", "sans-serif";
+            }
         </style>
     </head>
     <body>
         <div class="project">
             <h1>Project title</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quam magna, vestibulum sed pretium sed, sollicitudin quis lectus. Suspendisse blandit eros ac nisl viverra convallis. Nunc ac urna egestas, dapibus lectus ut, imperdiet risus. Nullam erat erat, egestas eu neque sit amet, pharetra tristique tellus. Donec at aliquet sem. Phasellus sed lobortis enim. Cras aliquet laoreet quam. Etiam viverra velit metus, a cursus magna porttitor sed. Morbi vel purus vitae ipsum gravida suscipit. Nam sodales ultrices imperdiet. Aenean mollis ipsum placerat venenatis elementum. Mauris luctus dignissim efficitur. Suspendisse non congue diam.
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quam magna, vestibulum sed pretium sed, sollicitudin quis lectus. Suspendisse blandit eros ac nisl viverra convallis. Nunc ac urna egestas, dapibus lectus ut, imperdiet risus. Nullam
+                erat erat, egestas eu neque sit amet, pharetra tristique tellus. Donec at aliquet sem. Phasellus sed lobortis enim. Cras aliquet laoreet quam. Etiam viverra velit metus, a cursus magna porttitor sed. Morbi vel purus vitae ipsum gravida suscipit. Nam
+                sodales ultrices imperdiet. Aenean mollis ipsum placerat venenatis elementum. Mauris luctus dignissim efficitur. Suspendisse non congue diam.
             </p>
         </div>
         <div id="qrcodeimg" style="border: 1px solid red; display: none;"></div>
@@ -62,14 +68,24 @@
                 document.querySelector('#qrcodeimg').appendChild(el);
                 // Draw the SVG Passport with D3 ... svg proportions and border add text add icons add ... Load the the current page link QR Code image and add it to the SVG Passport with D3
                 var svg = d3.select("#d3").select("svg");
+                svg.attr("width", "300")
+                   .attr("height", "400");
                 var qr = d3.select("#qrcodeimg").select("img");
                 var crsrc = qr["_groups"][0][0]["currentSrc"];
-                svg.append("image").attr("y", "0").attr("x", "0").attr("width", "300").attr("height", "300").attr("xlink:href", crsrc);
+                svg.append("image")
+                   .attr("y", "0")
+                   .attr("x", "100")
+                   .attr("width", "300")
+                   .attr("height", "300")
+                   .attr("xlink:href", crsrc);
                 // Get project info
                 var title = d3.select("div.project > h1").text();
                 var content = d3.select("div.project > p").text();
-                console.log(title);
-                console.log(content);
+                svg.append("text")
+                   .attr("class","project-title")
+                   .attr("x", "10")
+                   .attr("y", "30")
+                   .text(title);
             }
         </script>
     </body>
