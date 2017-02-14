@@ -1,0 +1,23 @@
+{
+  "name": "flio-makeit",
+  "authors": [
+    "Massimo Menichinelli <info@openp2pdesign.org>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "^4.5.0",
+    "kjua": "lrsjng/kjua#^0.1.1",
+    "bootstrap": "^3.3.7",
+    "QR-Code-generator": "https://github.com/nayuki/QR-Code-generator.git"
+  }
+}
