@@ -32,6 +32,7 @@
         </div>
         <script>
             var generatePassport = function () {
+                var qrcodeSize = 200;
                 // Create the image of the QR Code with https://larsjung.de/kjua/
                 var el = kjua({
                     // Current page link qrcode
@@ -45,7 +46,7 @@
                     // error correction level: 'L', 'M', 'Q' or 'H'
                     ecLevel: 'L',
                     // size in pixel
-                    size: 200,
+                    size: qrcodeSize,
                     // pixel-ratio, null for devicePixelRatio
                     ratio: null,
                     // code color
@@ -77,8 +78,10 @@
                 var content = d3.select("div.project > p").text();
                 //svg proportions and border
                 var svg = d3.select("#d3").select("svg");
-                svg.attr("width", "600")
-                   .attr("height", "400");
+                var A5w = 210*4;
+                var A5h = 148*4;
+                svg.attr("width", A5w)
+                   .attr("height", A5h);
                 //add text
                 svg.append("text")
                    .attr("class","project-title")
@@ -91,8 +94,8 @@
                 var qr = d3.select("#qrcodeimg").select("img");
                 var crsrc = qr["_groups"][0][0]["currentSrc"];
                 svg.append("image")
-                   .attr("y", "0")
-                   .attr("x", "100")
+                   .attr("y", (A5h/2)-qrcodeSize)
+                   .attr("x", A5w-qrcodeSize*2)
                    .attr("width", "300")
                    .attr("height", "300")
                    .attr("xlink:href", crsrc);
