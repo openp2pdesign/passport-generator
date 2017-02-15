@@ -27,7 +27,9 @@
         <div id="d3">
             <svg></svg>
         </div>
-        <button onclick="generatePassport()">Click me</button>
+        <div>
+            <button onclick="generatePassport()">Generate a Project Passport</button>
+        </div>
         <script>
             var generatePassport = function () {
                 // Create the image of the QR Code with https://larsjung.de/kjua/
@@ -69,10 +71,23 @@
                 });
                 // Add the current page link QR Code image to the page (but with display: none)
                 document.querySelector('#qrcodeimg').appendChild(el);
-                // Draw the SVG Passport with D3 ... svg proportions and border add text add icons add ... Load the the current page link QR Code image and add it to the SVG Passport with D3
+                // Draw the SVG Passport with D3
+                // Get project info
+                var title = d3.select("div.project > h1").text();
+                var content = d3.select("div.project > p").text();
+                //svg proportions and border
                 var svg = d3.select("#d3").select("svg");
-                svg.attr("width", "300")
+                svg.attr("width", "600")
                    .attr("height", "400");
+                //add text
+                svg.append("text")
+                   .attr("class","project-title")
+                   .attr("x", "10")
+                   .attr("y", "30")
+                   .text(title);
+                //add icons
+                //add ...
+                //Load the the current page link QR Code image and add it to the SVG Passport with D3
                 var qr = d3.select("#qrcodeimg").select("img");
                 var crsrc = qr["_groups"][0][0]["currentSrc"];
                 svg.append("image")
@@ -81,14 +96,8 @@
                    .attr("width", "300")
                    .attr("height", "300")
                    .attr("xlink:href", crsrc);
-                // Get project info
-                var title = d3.select("div.project > h1").text();
-                var content = d3.select("div.project > p").text();
-                svg.append("text")
-                   .attr("class","project-title")
-                   .attr("x", "10")
-                   .attr("y", "30")
-                   .text(title);
+
+                // Show the passport
                 d3.select("#d3").style("display","inline");
             }
         </script>
